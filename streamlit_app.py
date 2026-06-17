@@ -32,7 +32,6 @@ st.markdown("""
         hr { border: 0; border-top: 1px solid #e5e5e5; margin: 30px 0; }
     </style>
 """, unsafe_allow_html=True)
-st.write("Teste")
 st.markdown(""" <div style="padding-bottom: 20px;">
         <h1 style="color: #000000; font-family: sans-serif;">Dashboard de Qualidade da Água</h1>
     </div>
