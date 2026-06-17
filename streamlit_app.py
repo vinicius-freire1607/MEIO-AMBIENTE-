@@ -8,13 +8,11 @@ from sklearn.ensemble import RandomForestClassifier
 from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_score, confusion_matrix
 import plotly.express as px
 import plotly.graph_objects as go
+import streamlit as st
+import streamlit as st
 
-st.set_page_config(
-    page_title="Análise de Qualidade da Água",
-    layout="wide",
-    initial_sidebar_state="expanded",
-    page_icon="💧" # Novo ícone para a página
-)
+st.set_page_config(layout="wide")
+
 # 2. CSS "Fine Line" Profissional
 st.markdown("""
     <style>
@@ -34,7 +32,12 @@ st.markdown("""
         hr { border: 0; border-top: 1px solid #e5e5e5; margin: 30px 0; }
     </style>
 """, unsafe_allow_html=True)
-
+st.write("Teste")
+st.markdown(""" <div style="padding-bottom: 20px;">
+        <h1 style="color: #000000; font-family: sans-serif;">Dashboard de Qualidade da Água</h1>
+    </div>
+""", unsafe_allow_html=True)
+st.caption("Oxigênio Dissolvido (OD) • Análise exploratória • Modelagem preditiva")
 # 4. Estrutura do Conteúdo
 # Em vez de imagens, usamos o próprio espaço para dividir as seções
 st.markdown("### Visão Geral")
@@ -145,7 +148,7 @@ def load_and_clean_data(file_path):
     try:
         df = pd.read_csv('BASE DE DADOS OD - ANA.csv')
     except FileNotFoundError:
-        st.error(f"Erro: O arquivo '{file_path}' não foi encontrado. Por favor, certifique-se de que o arquivo CSV esteja no local correto.")
+        st.error(f"Erro: O arquivo '{'BASE DE DADOS OD - ANA.csv'}' não foi encontrado. Por favor, certifique-se de que o arquivo CSV esteja no local correto.")
         st.stop()
 
     # Remover duplicatas
@@ -316,9 +319,6 @@ if page == "Introdução":
                 .rename(columns={'index': 'AMBIENTE', 'AMBIENTE': 'Contagem'}),
                 use_container_width=True
             )
-
-    with st.expander("Ver Amostra dos Dados Limpos"):
-        st.dataframe(df_cleaned.head(), use_container_width=True)
 
     with st.expander("Ver Amostra dos Dados Limpos (Clique para Expandir)"):
         st.dataframe(df_cleaned.head(), use_container_width=True)
